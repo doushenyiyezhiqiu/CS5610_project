@@ -7,7 +7,7 @@ The proposal itself should appear in the [./proposal](proposal) subdirectory,
 where you'll find the [proposal-guidelines.md](proposal/proposal-guidelines.md) 
 
  CS5610 Web Development 
-Project Proposal
+Project
 1.	Team
 Team number(s): Liangshe Li
 
