@@ -28,6 +28,7 @@ Menu bar(in the home page): In this part we will have a logo icon, a search inpu
 Details page: In this page we will see description and reviews of one single item.
 
 5.	Architecture and technical requirements
+
 For this project I would like to design a full stack web application. I will use MySQL to process data. I will not have log in authentication and we will store customer’s information in the database. I will use restful API to configure routes. We will not use a web-accessible API and we will use MySQL to deal with all data. For technologies used in this project:
 
 Frontend: ReactJS
