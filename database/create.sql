@@ -14,7 +14,7 @@ CREATE TABLE products (
 INSERT INTO products (name, image_url, description, price)
 VALUES (
     'Basketball',
-    'https://drive.google.com/file/d/1yTMorOjy2JGtm58g4RanZfg1VYynYgpf/preview',
+    'https://drive.google.com/thumbnail?id=1yTMorOjy2JGtm58g4RanZfg1VYynYgpf',
     'A basketball is a spherical ball used in basketball games. Basketballs typically range in size from very small promotional items only a few inches in diameter to extra large balls nearly a foot in diameter used in training exercises.',
     50.00
 );
@@ -22,7 +22,7 @@ VALUES (
 INSERT INTO products (name, image_url, description, price)
 VALUES (
     'Soccer',
-    'https://drive.google.com/file/d/1gjo5ko00nCxNmh2Gu1nB6nPHzZA2IMSp/preview',
+    'https://drive.google.com/thumbnail?id=1gjo5ko00nCxNmh2Gu1nB6nPHzZA2IMSp',
     'A soccer ball, also known as a football in most countries outside the US, is a durable ball used in the sport of association football. Designed for play on various surfaces, soccer balls are crafted to be kicked and are used in a game celebrated worldwide for its simplicity and team spirit.',
     50.00
 );

@@ -1,5 +1,4 @@
 from flask import jsonify
-from flask_cors import CORS
 
 from app import app, db
 from app.models import Product
