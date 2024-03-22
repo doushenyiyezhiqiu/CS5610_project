@@ -1,0 +1,13 @@
+/* ProductDetails.css */
+.description-frame {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 20px 0;
+  }
+  
+  .price {
+    font-family: 'Arial, sans-serif';
+    font-size: 20px;
+    font-weight: bold;
+  }
+  

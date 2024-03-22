@@ -17,7 +17,7 @@ const ProductList = () => {
         fetchProducts();
     }, []);
 
-    // Updated addToCart function using cartManager
+    // handle add to cart button and add one product into cart
     const handleAddToCart = (product) => {
         cartService.addToCart(product);
         alert(`Added ${product.name} to cart`);
