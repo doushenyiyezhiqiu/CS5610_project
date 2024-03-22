@@ -17,3 +17,14 @@ export const getProducts = async () => {
         return [];
     }
 };
+
+// In ProductService.js
+export const getProductById = async (productId) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/products/${productId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching product by ID:", error);
+        return null;
+    }
+};

@@ -7,3 +7,11 @@ from app.models import Product
 def get_products():
     products = Product.query.all()
     return jsonify([product.to_dict() for product in products])
+
+@app.route('/products/<int:productId>', methods=['GET'])
+def get_product(productId):
+    product = Product.query.get(productId)
+    if product:
+        return jsonify(product.to_dict())
+    else:
+        return jsonify({"error": "Product not found"}), 404

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getProducts } from '../services/ProductService';
 import { cartService } from '../services/CartService';
+import { useNavigate } from 'react-router-dom';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -20,6 +23,10 @@ const ProductList = () => {
         alert(`Added ${product.name} to cart`);
     };
 
+    const handleViewDetails = (productId) => {
+        navigate(`/product/${productId}`);
+    };
+
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', margin: 0 }}>
             {products.map(product => (
@@ -29,7 +36,7 @@ const ProductList = () => {
                     <h3>{product.name}</h3>
                     <p>${parseFloat(product.price).toFixed(2)}</p> {/* Format price as dollars */}
                     <div>
-                        <button onClick={() => alert(`Details for ${product.name}`)}>Details</button>
+                        <button onClick={() => handleViewDetails(product.id)}>Details</button>
                         {/* Add to Cart button next to the Details button */}
                         <button onClick={() => handleAddToCart(product)} style={{ marginLeft: '10px' }}>Add to Cart</button>
                     </div>
