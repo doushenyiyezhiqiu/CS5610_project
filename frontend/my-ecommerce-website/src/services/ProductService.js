@@ -18,7 +18,6 @@ export const getProducts = async () => {
     }
 };
 
-// In ProductService.js
 export const getProductById = async (productId) => {
     try {
         const response = await axios.get(`${API_BASE_URL}/products/${productId}`);
@@ -26,5 +25,15 @@ export const getProductById = async (productId) => {
     } catch (error) {
         console.error("Error fetching product by ID:", error);
         return null;
+    }
+};
+
+export const searchProducts = async (query) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/products/search`, { params: { query } });
+        return response.data;
+    } catch (error) {
+        console.error("Error searching products:", error);
+        return [];
     }
 };
