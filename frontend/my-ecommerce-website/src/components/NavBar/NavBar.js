@@ -17,7 +17,9 @@ const NavBar = () => {
 
     return (
         <div className="navbar">
-            <img src={logoIconUrl} alt="Logo" className="navbar-logo" />
+            <Link to="/">
+                <img src={logoIconUrl} alt="Logo" className="navbar-logo" />
+            </Link>
             
             <div className="navbar-search">
                 <input

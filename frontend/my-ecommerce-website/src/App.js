@@ -6,6 +6,7 @@ import ProductList from './components/ProductList/ProductList';
 import ProductDetails from './components/ProductDetails/ProductDetails';
 import NavBar from './components/NavBar/NavBar';
 import SearchProduct from './components/SearchProduct/SearchProduct';
+import CartDetails from './components/CartDetails/CartDetails';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<ProductList />} />
           <Route path="/product/:productId" element={<ProductDetails />} />
           <Route path="/search" element={<SearchProduct />} />
+          <Route path="/cart" element={<CartDetails />} />
           {/* Add more routes as needed */}
         </Routes>
       </div>
