@@ -59,3 +59,23 @@ class Order(db.Model):
             'orderDate': self.orderDate
         }
 
+class OrderItem(db.Model):
+    __tablename__ = 'order_item'
+    id = db.Column(db.Integer, primary_key=True)
+    orderId = db.Column(db.Integer, db.ForeignKey('orders.id'), nullable=False)
+    productId = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    unitPrice = db.Column(db.Numeric(10, 2), nullable=False)
+    imageUrl = db.Column(db.String(255), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'orderId': self.orderId,
+            'productId': self.productId,
+            'quantity': self.quantity,
+            'unitPrice': str(self.unitPrice),
+            'imageUrl': self.imageUrl
+        }
+
+

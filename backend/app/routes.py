@@ -1,6 +1,6 @@
-from flask import jsonify, request, abort
+from flask import jsonify, request
 from app import app, db
-from app.models import Product, Order
+from app.models import Product, Order, OrderItem
 
 @app.route('/products', methods=['GET'])
 def get_products():
@@ -41,6 +41,7 @@ def create_order():
         return jsonify({"error": "Missing fields in request data"}), 400
 
     try:
+        data = request.get_json()
         order = Order(
             firstName=request.json['firstName'],
             lastName=request.json['lastName'],
@@ -59,6 +60,18 @@ def create_order():
             totalAmount=request.json['totalAmount']
         )
         db.session.add(order)
+        db.session.flush()
+
+        for item in data['cartItems']:
+            order_item = OrderItem(
+                orderId=order.id,
+                productId=item['id'],
+                quantity=item['quantity'],
+                unitPrice=item['price'],
+                imageUrl=item['imageUrl']
+            )
+            db.session.add(order_item)
+
         db.session.commit()
         return jsonify(order.to_dict()), 201
     except Exception as e:

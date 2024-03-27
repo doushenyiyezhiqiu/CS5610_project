@@ -42,6 +42,13 @@ const Checkout = () => {
         const formattedTotalAmount = parseFloat(totalAmount).toFixed(2);
 
         console.log("Total amount is:" + totalAmount);
+
+        const cartItems = cartService.cartItems.map(item => ({
+            id: item.id,
+            quantity: item.quantity,
+            price: item.price,
+            imageUrl: item.imageUrl
+        }));
         
         const orderData = {
             firstName,
@@ -58,7 +65,8 @@ const Checkout = () => {
             creditCardNumber,
             creditCardExpirationDate,
             creditCardCvv,
-            totalAmount: formattedTotalAmount
+            totalAmount: formattedTotalAmount,
+            cartItems
         };
         
         try {

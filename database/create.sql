@@ -31,6 +31,17 @@ CREATE TABLE orders (
     orderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE order_item (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    orderId INT,
+    productId INT,
+    quantity INT,
+    unitPrice DECIMAL(10, 2),
+    imageUrl VARCHAR(255),
+    FOREIGN KEY (orderId) REFERENCES orders(id),
+    FOREIGN KEY (productId) REFERENCES products(id)
+);
+
 INSERT INTO products (name, image_url, description, price)
 VALUES (
     'Basketball',
