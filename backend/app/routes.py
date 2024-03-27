@@ -65,3 +65,8 @@ def create_order():
         db.session.rollback()
         # Return an explicit error response
         return jsonify({"error": "Failed to create order", "message": str(e)}), 500
+
+@app.route('/orders', methods=['GET'])
+def get_orders():
+    orders = Order.query.all()
+    return jsonify([order.to_dict() for order in orders])

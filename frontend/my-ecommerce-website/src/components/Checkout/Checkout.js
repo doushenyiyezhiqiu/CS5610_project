@@ -19,7 +19,7 @@ const Checkout = () => {
     const [creditCardExpirationDate, setCreditCardExpirationDate] = useState('');
     const [creditCardCvv, setCreditCardCvv] = useState('');
 
-    const totalAmount = parseFloat(cartService.totalQuantity.value); 
+    const totalAmount = parseFloat(cartService.totalPrice.value); 
 
     const handleSameAsShippingChange = () => {
         setSameAsShipping(!sameAsShipping);
@@ -64,6 +64,7 @@ const Checkout = () => {
         try {
             // Attempt to submit the order
             const response = await submitOrder(orderData);
+            console.log('the status is:' + response.status);
             if (response && response.status === 201) {
                 alert('Order placed successfully!');
             } else {

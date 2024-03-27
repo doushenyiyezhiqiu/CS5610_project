@@ -8,6 +8,7 @@ import NavBar from './components/NavBar/NavBar';
 import SearchProduct from './components/SearchProduct/SearchProduct';
 import CartDetails from './components/CartDetails/CartDetails';
 import Checkout from './components/Checkout/Checkout';
+import OrderHistory from './components/OrderHistory/OrderHistory';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/search" element={<SearchProduct />} />
           <Route path="/cart" element={<CartDetails />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-history" element={<OrderHistory />} />
           {/* Add more routes as needed */}
         </Routes>
       </div>
