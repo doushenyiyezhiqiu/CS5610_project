@@ -16,7 +16,7 @@ export const submitOrder = async (orderData) => {
         const response = await axios.post(`${API_BASE_URL}/orders`, orderData, config);
         
         // Assuming the server responds with the created order's data, it is returned here.
-        return response.data; // This line returns the response data to the caller.
+        return response; // This line returns the response data to the caller.
     } catch (error) {
         console.error("Error submitting order:", error);
         return null; // In case of an error, null is returned. You might consider throwing the error or handling it differently depending on your application's needs.
