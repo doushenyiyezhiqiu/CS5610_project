@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { cartService } from '../../services/CartService';
+import { useNavigate } from 'react-router-dom';
 
 const CartDetails = () => {
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const refreshCart = () => {
@@ -29,6 +32,10 @@ const CartDetails = () => {
     const handleDecrement = (cartItem) => {
         cartService.decrementQuantity(cartItem);
     };
+
+    const handleCheckout = () => {
+        navigate(`/checkout`);
+    }
 
     return (
         <div>
@@ -63,7 +70,7 @@ const CartDetails = () => {
                 <strong>Total Price: ${totalPrice.toFixed(2)}</strong>
             </div>
             <div style={{ marginTop: '10px', textAlign: 'right' }}>
-                <button onClick={() => alert('Proceeding to checkout...')}>Checkout</button>
+                <button onClick={handleCheckout}>Checkout</button>
             </div>
         </div>
     );

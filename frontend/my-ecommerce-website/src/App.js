@@ -7,6 +7,7 @@ import ProductDetails from './components/ProductDetails/ProductDetails';
 import NavBar from './components/NavBar/NavBar';
 import SearchProduct from './components/SearchProduct/SearchProduct';
 import CartDetails from './components/CartDetails/CartDetails';
+import Checkout from './components/Checkout/Checkout';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/product/:productId" element={<ProductDetails />} />
           <Route path="/search" element={<SearchProduct />} />
           <Route path="/cart" element={<CartDetails />} />
+          <Route path="/checkout" element={<Checkout />} />
           {/* Add more routes as needed */}
         </Routes>
       </div>

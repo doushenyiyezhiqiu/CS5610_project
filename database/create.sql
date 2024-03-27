@@ -11,6 +11,26 @@ CREATE TABLE products (
     price DECIMAL(10, 2)
 );
 
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    shippingAddress VARCHAR(255) NOT NULL,
+    shippingCity VARCHAR(255) NOT NULL,
+    shippingState VARCHAR(255) NOT NULL,
+    shippingZipCode VARCHAR(255) NOT NULL,
+    billingAddress VARCHAR(255) NOT NULL,
+    billingCity VARCHAR(255) NOT NULL,
+    billingState VARCHAR(255) NOT NULL,
+    billingZipCode VARCHAR(255) NOT NULL,
+    creditCardNumber VARCHAR(255) NOT NULL,
+    creditCardExpirationDate VARCHAR(255) NOT NULL,
+    creditCardCvv VARCHAR(255) NOT NULL,
+    totalAmount DECIMAL(10,2) NOT NULL,
+    orderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 INSERT INTO products (name, image_url, description, price)
 VALUES (
     'Basketball',
