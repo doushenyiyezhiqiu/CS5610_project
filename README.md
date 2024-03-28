@@ -1,6 +1,6 @@
 # hw-proposal
 
-Note: About how to run this project, just jump to the six point "Instruction on how to run this project"!
+Note: About how to run this project, just jump to the sixth point "Instruction on how to run this project"!
 
  CS5610 Web Development 
 Project
@@ -35,4 +35,15 @@ Database: MySQL
 
 6. Instruction on how to run this project
 
+First you should make sure that your system has the environment of python3 and node. Make sure you have installed flask and MySQL (I recommend using MySQL Workbench and I will use MySQL Workbench as example to show how to run this app).
+
+First go to the current repository. You need to create database of this app. Open MySQL Workbench, open 'dababase/create.sql' and run this script, you should create a database called "my-ecommerce".
+
+And then open the .py file "backend/app/__init__.py", change the line9 
+" app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'mysql+pymysql://root:scb78377837@localhost/my-ecommerce')"
+to 
+"app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'mysql+pymysql://root:defaultpass word@localhost/my-ecommerce') ",
+replace "defaultpassword" with the password of your account in local MySQL.
+
+And then go to "backend/" repository, run "python run.py" in the terminal, and then go to "frontend/my-ecommerce-website/" repository, run "npm start" in the terminal, it should open a new page in your default browser.
 
