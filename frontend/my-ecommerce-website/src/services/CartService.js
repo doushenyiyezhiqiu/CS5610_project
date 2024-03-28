@@ -70,6 +70,12 @@ class CartService {
       this.computeCartTotals();
     }
   }
+
+  clearCart() {
+    this.cartItems = [];
+    this.totalPrice.next(0);
+    this.totalQuantity.next(0);
+  }
 }
 
 export const cartService = new CartService();

@@ -76,6 +76,7 @@ const Checkout = () => {
             console.log('the status is:' + response.status);
             if (response && response.status === 201) {
                 alert('Order placed successfully!');
+                cartService.clearCart();
             } else {
                 alert(`Failed to place order: ${response.statusText || "Server error"}`);
             }
