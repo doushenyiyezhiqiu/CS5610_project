@@ -22,24 +22,25 @@ const OrderHistory = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th>Item Image</th>
-                                <th>Item Name</th>
-                                <th>Item Unit Price</th>
-                                <th>Item Quantity</th>
+                                {/* Apply inline styles for column widths and text alignment */}
+                                <th style={{ width: '20%', textAlign: 'center' }}>Item Image</th>
+                                <th style={{ width: '40%', textAlign: 'center' }}>Item Name</th>
+                                <th style={{ width: '20%', textAlign: 'center' }}>Item Unit Price</th>
+                                <th style={{ width: '20%', textAlign: 'center' }}>Item Quantity</th>
                             </tr>
                         </thead>
                         <tbody>
                             {order.items.map((item, index) => (
                                 <tr key={index}>
-                                    <td><img src={item.imageUrl} alt={item.name} style={{ width: '50px', height: '50px' }} /></td>
-                                    <td>{item.name}</td>
-                                    <td>{item.unitPrice}</td>
-                                    <td>{item.quantity}</td>
+                                    <td style={{ textAlign: 'center' }}><img src={item.imageUrl} alt={item.name} style={{ width: '50px', height: '50px' }} /></td>
+                                    <td style={{ textAlign: 'center' }}>{item.name}</td>
+                                    <td style={{ textAlign: 'center' }}>${item.unitPrice}</td> {/* Ensure price formatting */}
+                                    <td style={{ textAlign: 'center' }}>{item.quantity}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                    <p>Total Amount: {order.totalAmount}</p>
+                    <p style={{ textAlign: 'center' }}>Total Amount: ${order.totalAmount}</p> {/* Ensure total amount formatting */}
                 </div>
             ))}
         </div>
