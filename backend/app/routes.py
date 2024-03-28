@@ -68,7 +68,8 @@ def create_order():
                 productId=item['id'],
                 quantity=item['quantity'],
                 unitPrice=item['price'],
-                imageUrl=item['imageUrl']
+                imageUrl=item['imageUrl'],
+                name=item['name']
             )
             db.session.add(order_item)
 
@@ -79,7 +80,25 @@ def create_order():
         # Return an explicit error response
         return jsonify({"error": "Failed to create order", "message": str(e)}), 500
 
-@app.route('/orders', methods=['GET'])
-def get_orders():
+
+@app.route('/order-history', methods=['GET'])
+def order_history():
     orders = Order.query.all()
-    return jsonify([order.to_dict() for order in orders])
+    order_list = []
+    for order in orders:
+        order_items = OrderItem.query.filter_by(orderId=order.id).all()
+        items_list = [{
+            'imageUrl': item.imageUrl,
+            'name': item.name,  # Adjust according to your model attributes
+            'unitPrice': str(item.unitPrice),
+            'quantity': item.quantity
+        } for item in order_items]
+
+        order_data = {
+            'id': order.id,
+            'totalAmount': str(order.totalAmount),
+            'items': items_list
+        }
+        order_list.append(order_data)
+
+    return jsonify(order_list)

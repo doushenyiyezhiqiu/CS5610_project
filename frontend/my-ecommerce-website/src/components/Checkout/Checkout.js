@@ -47,7 +47,8 @@ const Checkout = () => {
             id: item.id,
             quantity: item.quantity,
             price: item.price,
-            imageUrl: item.imageUrl
+            imageUrl: item.imageUrl,
+            name: item.name
         }));
         
         const orderData = {
