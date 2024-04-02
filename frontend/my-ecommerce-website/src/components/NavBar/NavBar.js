@@ -32,6 +32,8 @@ const NavBar = () => {
             </div>
             <div className="navbar-links">
                 {/* Order History as a button */}
+
+                
                 <button onClick={() => navigate('/order-history')}>Order History</button>
                 
                 {/* Cart as a clickable icon with Link */}

@@ -42,7 +42,7 @@ First go to the current repository. You need to create database of this app. Ope
 And then open the .py file "backend/app/__init__.py", change the line9 
 " app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'mysql+pymysql://root:scb78377837@localhost/my-ecommerce')"
 to 
-"app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'mysql+pymysql://root:defaultpass word@localhost/my-ecommerce') ",
+"app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'mysql+pymysql://root:defaultpassword@localhost/my-ecommerce') ",
 replace "defaultpassword" with the password of your account in local MySQL.
 
 And then go to "backend/" repository, run "python run.py" in the terminal, and then go to "frontend/my-ecommerce-website/" repository, run "npm start" in the terminal, it should open a new page in your default browser.
