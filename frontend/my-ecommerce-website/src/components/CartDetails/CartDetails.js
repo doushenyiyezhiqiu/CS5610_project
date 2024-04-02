@@ -37,6 +37,15 @@ const CartDetails = () => {
         navigate(`/checkout`);
     }
 
+    if (cartItems.length === 0) {
+        return (
+            <div>
+                <h2>Cart Details</h2>
+                <p>There are no items in the cart.</p>
+            </div>
+        );
+    }
+
     return (
         <div>
             <h2>Cart Details</h2>
@@ -77,3 +86,4 @@ const CartDetails = () => {
 };
 
 export default CartDetails;
+

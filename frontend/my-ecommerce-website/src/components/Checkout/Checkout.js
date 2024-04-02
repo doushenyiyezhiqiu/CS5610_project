@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { cartService } from '../../services/CartService';
 import { submitOrder } from '../../services/CheckoutService';
+import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
     const [firstName, setFirstName] = useState('');
@@ -19,7 +20,9 @@ const Checkout = () => {
     const [creditCardExpirationDate, setCreditCardExpirationDate] = useState('');
     const [creditCardCvv, setCreditCardCvv] = useState('');
 
-    const totalAmount = parseFloat(cartService.totalPrice.value); 
+    const totalAmount = parseFloat(cartService.totalPrice.value);
+    
+    const navigate = useNavigate();
 
     const handleSameAsShippingChange = () => {
         setSameAsShipping(!sameAsShipping);
@@ -40,8 +43,6 @@ const Checkout = () => {
         e.preventDefault();
 
         const formattedTotalAmount = parseFloat(totalAmount).toFixed(2);
-
-        console.log("Total amount is:" + totalAmount);
 
         const cartItems = cartService.cartItems.map(item => ({
             id: item.id,
@@ -77,6 +78,7 @@ const Checkout = () => {
             if (response && response.status === 201) {
                 alert('Order placed successfully!');
                 cartService.clearCart();
+                navigate('/');
             } else {
                 alert(`Failed to place order: ${response.statusText || "Server error"}`);
             }
