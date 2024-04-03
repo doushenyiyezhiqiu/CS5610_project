@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProductById } from '../../services/ProductService'; // Adjust the import path as necessary
-import './ProductDetails.css';
+import { getProductById } from '../../services/ProductService';
+import './ProductDetails.css'; // Make sure the CSS file is imported
 import { cartService } from '../../services/CartService';
 
 const ProductDetails = () => {
@@ -17,28 +17,23 @@ const ProductDetails = () => {
     fetchProduct();
   }, [productId]);
 
-  // handle add to cart button and add one product into cart
   const handleAddToCart = (product) => {
     cartService.addToCart(product);
-    alert(`Added ${product.name} to cart`);
   };
 
-  // Placeholder content if product is not fetched yet
   if (!product) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
+    <div className="product-details-container">
       <h2>{product.name}</h2>
-      <img src={product.image_url} alt={product.name} style={{ width: '200px', height: '200px' }} />
-      {/* Description with a frame using CSS class */}
+      <img src={product.image_url} alt={product.name} className="product-image" />
       <div className="description-frame">
         <p>Description: {product.description}</p>
       </div>
-      {/* Price with a different font using CSS class */}
       <p className="price">Price: ${parseFloat(product.price).toFixed(2)}</p>
-      <button onClick={() => handleAddToCart(product)} style={{ marginLeft: '10px' }}>Add to Cart</button>
+      <button onClick={() => handleAddToCart(product)} className="add-to-cart-btn">Add to Cart</button>
     </div>
   );
 };

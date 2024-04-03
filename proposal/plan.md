@@ -7,7 +7,7 @@ This is an individual project, so I am responsible for the whole project. I deci
     * Set up relevant database and backend routers.
 
 * v0.2: Prototype
-    * Add login page using third party authorization okta.
+    * Add login page using third party authorization Auth0.
     * Add login in status, customer who do not login cannot see order-history.
 
 * v0.3: Final Project

@@ -61,16 +61,16 @@ const CartDetails = () => {
                 <tbody>
                     {cartItems.map(item => (
                         <tr key={item.id}>
-                            <td style={{ textAlign: 'center' }}>
+                            <td style={{ textAlign: 'center', width: '20%' }}>
                                 <img src={item.imageUrl} alt={item.name} style={{ width: '50px', height: '50px' }} />
                             </td>
-                            <td>{item.name}</td>
-                            <td style={{ textAlign: 'center' }}>
+                            <td style={{ textAlign: 'center', width: '40%' }}>{item.name}</td>
+                            <td style={{ textAlign: 'center', width: '20%' }}>
                                 <button onClick={() => handleDecrement(item)}>-</button>
                                 {` ${item.quantity} `}
                                 <button onClick={() => handleIncrement(item)}>+</button>
                             </td>
-                            <td>${item.price.toFixed(2)}</td>
+                            <td style={{ textAlign: 'center', width: '20%' }}>${item.price.toFixed(2)}</td>
                         </tr>
                     ))}
                 </tbody>

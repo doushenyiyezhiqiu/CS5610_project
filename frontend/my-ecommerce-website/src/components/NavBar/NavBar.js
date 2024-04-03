@@ -1,19 +1,41 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react'; // Import useAuth0 hook
 import './NavBar.css'; // Ensure you have this CSS file for styles
+import { useState } from 'react';
 
 // URLs for the images
-const logoIconUrl = 'https://drive.google.com/thumbnail?id=1hsrVM5O8WPF0WchNBpWeGGWC3P0-n_0l';
+const logoIconUrl = '/images/northeastern.png';
 const cartIconUrl = 'https://drive.google.com/thumbnail?id=1kgR-0m4XJFay8ztIw_U4WAihakjBwsdw'; 
 
 const NavBar = () => {
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0(); // Destructure Auth0 hook
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearch = () => {
-        // Navigate to a search page or handle the search differently
+        if (isAuthenticated) {
         navigate(`/search?query=${searchQuery}`);
+        } else {
+            alert('Please login!');
+        }
     };
+
+    const handleCartClick = () => {
+        if (isAuthenticated) {
+            navigate('/cart');
+        } else {
+            alert('Please login!');
+        }
+    };
+
+    const handleOrderHistoryClick = () => {
+        if (isAuthenticated) {
+            navigate('/order-history');
+        } else {
+            alert('Please login!');
+        }
+    }
 
     return (
         <div className="navbar">
@@ -31,15 +53,14 @@ const NavBar = () => {
                 <button onClick={handleSearch}>Search</button>
             </div>
             <div className="navbar-links">
-                {/* Order History as a button */}
-
-                
-                <button onClick={() => navigate('/order-history')}>Order History</button>
-                
-                {/* Cart as a clickable icon with Link */}
-                <Link to="/cart">
-                    <img src={cartIconUrl} alt="Cart" className="navbar-cart" />
-                </Link>
+                {/* Conditionally render Login/Logout based on authentication status */}
+                {isAuthenticated ? (
+                    <button className='navbar-button' onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>
+                ) : (
+                    <button className='navbar-button' onClick={() => loginWithRedirect()}>Login</button>
+                )}
+                <button className='navbar-button' onClick={handleOrderHistoryClick}>Order History</button>
+                <img src={cartIconUrl} alt="Cart" className="navbar-cart" onClick={handleCartClick} />
             </div>
         </div>
     );

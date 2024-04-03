@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { getProducts } from '../../services/ProductService';
 import { cartService } from '../../services/CartService';
 import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
 
     const navigate = useNavigate();
+
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0(); 
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -18,12 +21,19 @@ const ProductList = () => {
     }, []);
 
     const handleAddToCart = (product) => {
+        if (isAuthenticated) {
         cartService.addToCart(product);
-        alert(`Added ${product.name} to cart`);
+        } else {
+            alert(`Please login!`);
+        }
     };
 
     const handleViewDetails = (productId) => {
+        if (isAuthenticated) {
         navigate(`/product/${productId}`);
+        } else {
+            alert(`Please login!`);
+        }
     };
 
     return (
