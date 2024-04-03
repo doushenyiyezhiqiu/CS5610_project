@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 // URLs for the images
 const logoIconUrl = '/images/northeastern.png';
-const cartIconUrl = 'https://drive.google.com/thumbnail?id=1kgR-0m4XJFay8ztIw_U4WAihakjBwsdw'; 
+const cartIconUrl = '/images/cart.png'; 
 
 const NavBar = () => {
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0(); // Destructure Auth0 hook
