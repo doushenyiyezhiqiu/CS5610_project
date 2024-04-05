@@ -97,7 +97,8 @@ def order_history():
         order_data = {
             'id': order.id,
             'totalAmount': str(order.totalAmount),
-            'items': items_list
+            'items': items_list,
+            'orderDate': order.orderDate
         }
         order_list.append(order_data)
 

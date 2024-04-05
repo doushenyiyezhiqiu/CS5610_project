@@ -13,6 +13,16 @@ const OrderHistory = () => {
         getOrders();
     }, []);
 
+    // Check if orders array is empty and display a message accordingly
+    if (orders.length === 0) {
+        return (
+            <div>
+                <h2>Order History</h2>
+                <p>You never placed an order.</p>
+            </div>
+        );
+    }
+
     return (
         <div>
             <h2>Order History</h2>
@@ -40,7 +50,10 @@ const OrderHistory = () => {
                             ))}
                         </tbody>
                     </table>
-                    <p style={{ textAlign: 'center' }}>Total Amount: ${order.totalAmount}</p> {/* Ensure total amount formatting */}
+                    <div style={{ textAlign: 'right', marginTop: '10px' }}>
+                        <p>Order Time: {new Date(order.orderDate).toLocaleString()}</p>
+                        <p>Total Amount: ${order.totalAmount}</p>
+                    </div>
                 </div>
             ))}
         </div>
