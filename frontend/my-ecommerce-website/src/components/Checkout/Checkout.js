@@ -10,24 +10,24 @@ const stripePromise = loadStripe('pk_test_51Ngg0rEHLw8pQL0lnAgduz4hh1g2D8BRHyWSw
 
 const CARD_ELEMENT_OPTIONS = {
     style: {
-      base: {
-        color: "#32325d",
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: "antialiased",
-        fontSize: "16px",
-        "::placeholder": {
-          color: "#aab7c4"
+        base: {
+            color: "#32325d",
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: "antialiased",
+            fontSize: "16px",
+            "::placeholder": {
+                color: "#aab7c4"
+            },
+            // Remove spacing and zip code configurations here
         },
-        // Remove spacing and zip code configurations here
-      },
-      invalid: {
-        color: "#fa755a",
-        iconColor: "#fa755a"
-      }
+        invalid: {
+            color: "#fa755a",
+            iconColor: "#fa755a"
+        }
     },
     // To hide the postal code field
     hidePostalCode: true
-  };
+};
 
 const CheckoutForm = () => {
 
@@ -101,9 +101,6 @@ const CheckoutForm = () => {
     const [billingState, setBillingState] = useState('');
     const [billingZipCode, setBillingZipCode] = useState('');
     const [sameAsShipping, setSameAsShipping] = useState(false);
-    const [creditCardNumber, setCreditCardNumber] = useState('');
-    const [creditCardExpirationDate, setCreditCardExpirationDate] = useState('');
-    const [creditCardCvv, setCreditCardCvv] = useState('');
 
     const totalAmount = parseFloat(cartService.totalPrice.value);
 
@@ -122,10 +119,7 @@ const CheckoutForm = () => {
         }
     };
 
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
+    const handleStripePayment = async () => {
         if (!stripe || !elements) {
             console.log("Stripe hasn't loaded yet");
             return;
@@ -140,11 +134,19 @@ const CheckoutForm = () => {
 
         if (error) {
             console.log('[error]', error);
+            alert('Payment unsuccessful!');
             return; // Stop the process and handle the error
         } else {
             console.log('[PaymentMethod]', paymentMethod);
             // Process the paymentMethod as required for your backend
         }
+
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        await handleStripePayment();
 
         const formattedTotalAmount = parseFloat(totalAmount).toFixed(2);
 
@@ -168,9 +170,6 @@ const CheckoutForm = () => {
             billingCity,
             billingState,
             billingZipCode,
-            creditCardNumber,
-            creditCardExpirationDate,
-            creditCardCvv,
             totalAmount: formattedTotalAmount,
             cartItems
         };
@@ -300,32 +299,8 @@ const CheckoutForm = () => {
             </div>
             <div>
                 <h3>Credit Card Information</h3>
-                <label>Card Number:</label>
-                <input
-                    type="text"
-                    name="number"
-                    placeholder="Card Number"
-                    value={creditCardNumber}
-                    onChange={(e) => setCreditCardNumber(e.target.value)}
-                />
-                <label>Expiration Date:</label>
-                <input
-                    type="text"
-                    name="expirationDate"
-                    placeholder="Expiration Date (MM/YY)"
-                    value={creditCardExpirationDate}
-                    onChange={(e) => setCreditCardExpirationDate(e.target.value)}
-                />
-                <label>CVV:</label>
-                <input
-                    type="text"
-                    name="cvv"
-                    placeholder="CVV"
-                    value={creditCardCvv}
-                    onChange={(e) => setCreditCardCvv(e.target.value)}
-                />
+                <CardElement options={CARD_ELEMENT_OPTIONS} />
             </div>
-            <CardElement options={CARD_ELEMENT_OPTIONS} />
             <button onClick={handleSubmit} style={{ marginTop: '20px' }}>Submit</button>
 
         </form>

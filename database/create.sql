@@ -24,9 +24,6 @@ CREATE TABLE orders (
     billingCity VARCHAR(255) NOT NULL,
     billingState VARCHAR(255) NOT NULL,
     billingZipCode VARCHAR(255) NOT NULL,
-    creditCardNumber VARCHAR(255) NOT NULL,
-    creditCardExpirationDate VARCHAR(255) NOT NULL,
-    creditCardCvv VARCHAR(255) NOT NULL,
     totalAmount DECIMAL(10,2) NOT NULL,
     orderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

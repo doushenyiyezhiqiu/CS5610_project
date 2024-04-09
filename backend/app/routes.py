@@ -32,8 +32,7 @@ def create_order():
         "firstName", "lastName", "email", "shippingAddress",
         "shippingCity", "shippingState", "shippingZipCode",
         "billingAddress", "billingCity", "billingState",
-        "billingZipCode", "creditCardNumber", "creditCardExpirationDate",
-        "creditCardCvv", "totalAmount"
+        "billingZipCode", "totalAmount"
     ]
 
     if not all(field in request.json for field in required_fields):
@@ -54,9 +53,6 @@ def create_order():
             billingCity=request.json['billingCity'],
             billingState=request.json['billingState'],
             billingZipCode=request.json['billingZipCode'],
-            creditCardNumber=request.json['creditCardNumber'],
-            creditCardExpirationDate=request.json['creditCardExpirationDate'],
-            creditCardCvv=request.json['creditCardCvv'],
             totalAmount=request.json['totalAmount']
         )
         db.session.add(order)

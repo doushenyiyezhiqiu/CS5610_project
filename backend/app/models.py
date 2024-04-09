@@ -32,9 +32,6 @@ class Order(db.Model):
     billingCity = db.Column(db.String(255), nullable=False)
     billingState = db.Column(db.String(255), nullable=False)
     billingZipCode = db.Column(db.String(255), nullable=False)
-    creditCardNumber = db.Column(db.String(255), nullable=False)
-    creditCardExpirationDate = db.Column(db.String(255), nullable=False)
-    creditCardCvv = db.Column(db.String(255), nullable=False)
     totalAmount = db.Column(db.Numeric(10, 2), nullable=False)
     orderDate = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -52,9 +49,6 @@ class Order(db.Model):
             'billingCity': self.billingCity,
             'billingState': self.billingState,
             'billingZipCode': self.billingZipCode,
-            'creditCardNumber': self.creditCardNumber,
-            'creditCardExpirationDate': self.creditCardExpirationDate,
-            'credictCardCvv': self.creditCardCvv,
             'totalAmount': self.totalAmount,
             'orderDate': self.orderDate
         }
