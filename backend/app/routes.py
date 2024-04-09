@@ -82,7 +82,11 @@ def create_order():
 
 @app.route('/order-history', methods=['GET'])
 def order_history():
-    orders = Order.query.all()
+    email = request.args.get('email')  # Get the email query parameter
+    if not email:
+        return jsonify({'error': 'Email is required'}), 400
+
+    orders = Order.query.filter_by(email=email).all()
     order_list = []
     for order in orders:
         order_items = OrderItem.query.filter_by(orderId=order.id).all()

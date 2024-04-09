@@ -14,7 +14,7 @@ const CARD_ELEMENT_OPTIONS = {
             color: "#32325d",
             fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
             fontSmoothing: "antialiased",
-            fontSize: "16px",
+            fontSize: "20px",
             "::placeholder": {
                 color: "#aab7c4"
             },

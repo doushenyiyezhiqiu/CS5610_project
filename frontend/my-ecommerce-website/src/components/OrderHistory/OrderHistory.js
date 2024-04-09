@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 import { fetchOrderHistory } from '../../services/OrderService';
 
 const OrderHistory = () => {
     const [orders, setOrders] = useState([]);
+    const { user } = useAuth0();
 
     useEffect(() => {
         const getOrders = async () => {
-            const fetchedOrders = await fetchOrderHistory();
-            setOrders(fetchedOrders);
+            if(user?.email) {
+                const fetchedOrders = await fetchOrderHistory(user.email);
+                setOrders(fetchedOrders);
+            }
         };
 
         getOrders();
-    }, []);
+    }, [user?.email]);
 
     // Check if orders array is empty and display a message accordingly
     if (orders.length === 0) {

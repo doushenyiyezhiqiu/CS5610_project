@@ -1,13 +1,16 @@
-import axios from 'axios';
-
-const API_BASE_URL = 'http://127.0.0.1:5000'; // Update this as per your configuration
-
-export const fetchOrderHistory = async () => {
+// Update the import statement if you're switching from axios to fetch API
+export const fetchOrderHistory = async (email) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/order-history`);
-        return response.data; // This returns the fetched order history data
+        const response = await fetch(`http://127.0.0.1:5000/order-history?email=${encodeURIComponent(email)}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return await response.json();
     } catch (error) {
         console.error("Error fetching order history:", error);
-        return []; // Return an empty array or null as a fallback
+        return []; // It's a good practice to return an empty array as the default case
     }
 };
+
