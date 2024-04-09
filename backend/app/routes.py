@@ -1,7 +1,10 @@
+import stripe
+
 from flask import jsonify, request
 from app import app, db
 from app.models import Product, Order, OrderItem
 
+stripe.api_key = 'sk_test_51Ngg0rEHLw8pQL0l5RhCliYeJapwpQaILiXdXFmrGSGZ7zeTJzoLojoFs1MVZSptoRFxXgFzCUdbH47sgbTWvzl200LDODDY9w'
 @app.route('/products', methods=['GET'])
 def get_products():
     products = Product.query.all()
@@ -99,3 +102,20 @@ def order_history():
         order_list.append(order_data)
 
     return jsonify(order_list)
+
+@app.route('/create-payment-intent', methods=['POST'])
+def create_payment():
+    data = request.json
+    try:
+        # Create a PaymentIntent with the order amount and currency
+        payment_intent = stripe.PaymentIntent.create(
+            amount=data['amount'],  # Amount is in cents
+            currency='usd',
+            payment_method=data['paymentMethodId'],
+            confirmation_method='manual',
+            confirm=True,
+            return_url='http://localhost:3000'
+        )
+        return jsonify(payment_intent)
+    except stripe.error.StripeError as e:
+        return jsonify(error=str(e)), 400

@@ -137,8 +137,24 @@ const CheckoutForm = () => {
             alert('Payment unsuccessful!');
             return; // Stop the process and handle the error
         } else {
-            console.log('[PaymentMethod]', paymentMethod);
-            // Process the paymentMethod as required for your backend
+            // Send paymentMethod.id and orderData.amount to your backend
+            const response = await fetch('http://127.0.0.1:5000/create-payment-intent', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    paymentMethodId: paymentMethod.id,
+                    amount: totalAmount * 100, // Convert dollars to cents
+                }),
+            });
+
+            const paymentIntentResponse = await response.json();
+
+            if (paymentIntentResponse && paymentIntentResponse.status === 400) {
+                console.log('The payment response is:' + paymentIntentResponse);
+                alert('Payment unsuccessful!');
+            }
         }
 
     }
