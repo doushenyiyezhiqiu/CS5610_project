@@ -1,0 +1,57 @@
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; /* Adjust gap to manage spacing between items */
+    padding: 20px;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 5px #ddd;
+    padding: 10px;
+    height: 100%;
+    background-color: #fff; /* Optional: for better visibility */
+    border: none; /* Remove if you prefer no borders */
+}
+
+.product-item img {
+    width: 150px; /* Ensures consistent image size */
+    height: 150px; /* Adjust based on your preference */
+    object-fit: cover; /* Keeps aspect ratio intact */
+    margin-bottom: 10px; /* Space between image and name */
+}
+
+.product-item h3, .product-item p {
+    text-align: center;
+    margin: 5px 0; /* Minimal margin for name and price */
+}
+
+/* Button container to align buttons at the bottom */
+.product-item div {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+}
+
+/* Pagination styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.pagination span, .pagination a {
+    margin: 0 5px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.pagination a.active {
+    font-weight: bold;
+    text-decoration: none;
+}

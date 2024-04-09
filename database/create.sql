@@ -252,6 +252,35 @@ VALUES (
     29.95
 );
 
+INSERT INTO products (name, image_url, description, price)
+VALUES (
+    'Starbuck Mug',
+    '/images/starbuckMug.png',
+    'The Starbucks Logo Mug, available in a 14oz size on Amazon.com, is a quintessential piece for coffee enthusiasts and collectors alike. This mug features the iconic 
+    Starbucks logo prominently displayed, encapsulating the essence of the renowned coffeehouse brand. Crafted from high-quality ceramic, it offers durability for daily use, 
+    whether enjoying your morning coffee at home or at the office. The mug\'s generous 14oz capacity is perfect for those who prefer a larger serving of their favorite 
+    beverage. Its classic design includes a comfortable handle, making it easy to hold. This Starbucks cup is not just a functional item for coffee consumption; it\'s also a 
+    statement piece that celebrates the coffee culture and the global community of Starbucks lovers. It serves as a wonderful gift for friends, family, or any Starbucks 
+    aficionado, adding a touch of coffeehouse charm to any mug collection.',
+    8.87
+);
+
+INSERT INTO products (name, image_url, description, price)
+VALUES (
+    'Luggage',
+    '/images/luggage.png',
+    'The Hanke Suitcase with Wheels is a highly innovative and versatile travel companion designed to cater to the modern traveler\'s needs. This expandable, foldable 
+    luggage bag combines functionality with style, featuring a collapsible design that makes it perfect for those who value space-saving solutions. Its durable wheels 
+    ensure smooth rolling across various surfaces, enhancing mobility and convenience during travel. The suitcase expands to accommodate extra belongings, making it ideal 
+    for longer trips or last-minute shopping. Constructed from high-quality materials, it promises durability and resistance to the rigors of travel. The sleek design and 
+    practical features, such as multiple compartments for organized packing and a sturdy telescoping handle, make the Hanke Suitcase a smart choice for anyone looking for 
+    a reliable rolling travel bag. Whether you\'re embarking on a short business trip or a leisurely vacation, this suitcase adapts to your needs, providing a blend 
+    of comfort, style, and efficiency.',
+    295.00
+);
+
+
+
 
 
 

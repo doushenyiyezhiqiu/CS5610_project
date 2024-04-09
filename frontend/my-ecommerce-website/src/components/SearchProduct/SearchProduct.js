@@ -3,6 +3,7 @@ import { searchProducts } from '../../services/ProductService';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { cartService } from '../../services/CartService';
+import '../ProductList/ProductList.css';
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -35,23 +36,15 @@ const SearchProduct = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', margin: 0 }}>
+        <div className="product-grid">
             {products.map(product => (
-                <div key={product.id} style={{
-                    padding: '10px',
-                    // Removed the border style here
-                    width: 'calc(20% - 20px)',
-                    boxSizing: 'border-box',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}>
-                    <img src={product.image_url} alt={product.name} style={{ width: '100px', height: '100px' }} />
+                <div key={product.id} className="product-item">
+                    <img src={product.image_url} alt={product.name} />
                     <h3>{product.name}</h3>
-                    <p>${parseFloat(product.price).toFixed(2)}</p> {/* Format price as dollars */}
+                    <p>${parseFloat(product.price).toFixed(2)}</p>
                     <div>
                         <button onClick={() => handleViewDetails(product.id)}>Details</button>
-                        <button onClick={() => handleAddToCart(product)} style={{ marginLeft: '10px' }}>Add to Cart</button>
+                        <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
                     </div>
                 </div>
             ))}
