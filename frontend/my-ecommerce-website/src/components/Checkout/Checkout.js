@@ -3,8 +3,33 @@ import { cartService } from '../../services/CartService';
 import { submitOrder } from '../../services/CheckoutService';
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
-const Checkout = () => {
+const stripePromise = loadStripe('pk_test_51Ngg0rEHLw8pQL0lnAgduz4hh1g2D8BRHyWSwKGL9HqIjTzMVAZmcTmpxO1EqhG9PNXVfE6eWIiQ0xmrdPj7Npvg00793gB1rQ');
+
+const CARD_ELEMENT_OPTIONS = {
+    style: {
+      base: {
+        color: "#32325d",
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: "antialiased",
+        fontSize: "16px",
+        "::placeholder": {
+          color: "#aab7c4"
+        },
+        // Remove spacing and zip code configurations here
+      },
+      invalid: {
+        color: "#fa755a",
+        iconColor: "#fa755a"
+      }
+    },
+    // To hide the postal code field
+    hidePostalCode: true
+  };
+
+const CheckoutForm = () => {
 
     const states = [
         { name: "Alabama", abbreviation: "AL" },
@@ -57,9 +82,12 @@ const Checkout = () => {
         { name: "West Virginia", abbreviation: "WV" },
         { name: "Wisconsin", abbreviation: "WI" },
         { name: "Wyoming", abbreviation: "WY" }
-      ];
+    ];
 
     const { user } = useAuth0();
+    const stripe = useStripe();
+    const elements = useElements();
+    const navigate = useNavigate();
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -78,8 +106,6 @@ const Checkout = () => {
     const [creditCardCvv, setCreditCardCvv] = useState('');
 
     const totalAmount = parseFloat(cartService.totalPrice.value);
-    
-    const navigate = useNavigate();
 
     const handleSameAsShippingChange = () => {
         setSameAsShipping(!sameAsShipping);
@@ -96,8 +122,29 @@ const Checkout = () => {
         }
     };
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!stripe || !elements) {
+            console.log("Stripe hasn't loaded yet");
+            return;
+        }
+
+        const cardElement = elements.getElement(CardElement);
+
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+            type: 'card',
+            card: cardElement,
+        });
+
+        if (error) {
+            console.log('[error]', error);
+            return; // Stop the process and handle the error
+        } else {
+            console.log('[PaymentMethod]', paymentMethod);
+            // Process the paymentMethod as required for your backend
+        }
 
         const formattedTotalAmount = parseFloat(totalAmount).toFixed(2);
 
@@ -108,7 +155,7 @@ const Checkout = () => {
             imageUrl: item.imageUrl,
             name: item.name
         }));
-        
+
         const orderData = {
             firstName,
             lastName,
@@ -127,7 +174,7 @@ const Checkout = () => {
             totalAmount: formattedTotalAmount,
             cartItems
         };
-        
+
         try {
             // Attempt to submit the order
             const response = await submitOrder(orderData);
@@ -146,142 +193,156 @@ const Checkout = () => {
     };
 
     return (
+
+
+        <form>
+            <div>
+                <label>First Name:</label>
+                <input
+                    type="text"
+                    placeholder="First Name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                />
+                <label>Last Name:</label>
+                <input
+                    type="text"
+                    placeholder="Last Name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                />
+                <label>Email Address:</label>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+            </div>
+            <div>
+                <h3>Shipping Address</h3>
+                <label>Address:</label>
+                <input
+                    type="text"
+                    placeholder="Address"
+                    value={shippingAddress}
+                    onChange={(e) => setShippingAddress(e.target.value)}
+                />
+                <label>City:</label>
+                <input
+                    type="text"
+                    placeholder="City"
+                    value={shippingCity}
+                    onChange={(e) => setShippingCity(e.target.value)}
+                />
+                <label>State:</label>
+                <select
+                    value={shippingState}
+                    onChange={(e) => setShippingState(e.target.value)}
+                >
+                    <option value="">Select a state</option>
+                    {states.map((state) => (
+                        <option key={state.abbreviation} value={state.abbreviation}>{state.name}</option>
+                    ))}
+                </select>
+                <label>Zip Code:</label>
+                <input
+                    type="text"
+                    placeholder="Zip Code"
+                    value={shippingZipCode}
+                    onChange={(e) => setShippingZipCode(e.target.value)}
+                />
+            </div>
+            <div>
+                <h3>Billing Address</h3>
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={sameAsShipping}
+                        onChange={handleSameAsShippingChange}
+                    /> Same as shipping address
+                </label>
+                {!sameAsShipping && (
+                    <>
+                        <label>Address:</label>
+                        <input
+                            type="text"
+                            placeholder="Address"
+                            value={billingAddress}
+                            onChange={(e) => setBillingAddress(e.target.value)}
+                        />
+                        <label>City:</label>
+                        <input
+                            type="text"
+                            placeholder="City"
+                            value={billingCity}
+                            onChange={(e) => setBillingCity(e.target.value)}
+                        />
+                        <label>State:</label>
+                        <select
+                            value={billingState}
+                            onChange={(e) => setBillingState(e.target.value)}
+                        >
+                            <option value="">Select a state</option>
+                            {states.map((state) => (
+                                <option key={state.abbreviation} value={state.abbreviation}>{state.name}</option>
+                            ))}
+                        </select>
+                        <label>Zip Code:</label>
+                        <input
+                            type="text"
+                            placeholder="Zip Code"
+                            value={billingZipCode}
+                            onChange={(e) => setBillingZipCode(e.target.value)}
+                        />
+                    </>
+                )}
+            </div>
+            <div>
+                <h3>Credit Card Information</h3>
+                <label>Card Number:</label>
+                <input
+                    type="text"
+                    name="number"
+                    placeholder="Card Number"
+                    value={creditCardNumber}
+                    onChange={(e) => setCreditCardNumber(e.target.value)}
+                />
+                <label>Expiration Date:</label>
+                <input
+                    type="text"
+                    name="expirationDate"
+                    placeholder="Expiration Date (MM/YY)"
+                    value={creditCardExpirationDate}
+                    onChange={(e) => setCreditCardExpirationDate(e.target.value)}
+                />
+                <label>CVV:</label>
+                <input
+                    type="text"
+                    name="cvv"
+                    placeholder="CVV"
+                    value={creditCardCvv}
+                    onChange={(e) => setCreditCardCvv(e.target.value)}
+                />
+            </div>
+            <CardElement options={CARD_ELEMENT_OPTIONS} />
+            <button onClick={handleSubmit} style={{ marginTop: '20px' }}>Submit</button>
+
+        </form>
+
+
+    );
+};
+
+const Checkout = () => {
+    return (
         <div>
             <h2>Checkout</h2>
-            <form>
-                <div>
-                    <label>First Name:</label>
-                    <input
-                        type="text"
-                        placeholder="First Name"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                    />
-                    <label>Last Name:</label>
-                    <input
-                        type="text"
-                        placeholder="Last Name"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                    />
-                    <label>Email Address:</label>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <h3>Shipping Address</h3>
-                    <label>Address:</label>
-                    <input
-                        type="text"
-                        placeholder="Address"
-                        value={shippingAddress}
-                        onChange={(e) => setShippingAddress(e.target.value)}
-                    />
-                    <label>City:</label>
-                    <input
-                        type="text"
-                        placeholder="City"
-                        value={shippingCity}
-                        onChange={(e) => setShippingCity(e.target.value)}
-                    />
-                    <label>State:</label>
-                    <select
-                        value={shippingState}
-                        onChange={(e) => setShippingState(e.target.value)}
-                    >
-                        <option value="">Select a state</option>
-                        {states.map((state) => (
-                            <option key={state.abbreviation} value={state.abbreviation}>{state.name}</option>
-                        ))}
-                    </select>
-                    <label>Zip Code:</label>
-                    <input
-                        type="text"
-                        placeholder="Zip Code"
-                        value={shippingZipCode}
-                        onChange={(e) => setShippingZipCode(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <h3>Billing Address</h3>
-                    <label>
-                        <input
-                            type="checkbox"
-                            checked={sameAsShipping}
-                            onChange={handleSameAsShippingChange}
-                        /> Same as shipping address
-                    </label>
-                    {!sameAsShipping && (
-                        <>
-                            <label>Address:</label>
-                            <input
-                                type="text"
-                                placeholder="Address"
-                                value={billingAddress}
-                                onChange={(e) => setBillingAddress(e.target.value)}
-                            />
-                            <label>City:</label>
-                            <input
-                                type="text"
-                                placeholder="City"
-                                value={billingCity}
-                                onChange={(e) => setBillingCity(e.target.value)}
-                            />
-                            <label>State:</label>
-                            <select
-                                value={billingState}
-                                onChange={(e) => setBillingState(e.target.value)}
-                            >
-                                <option value="">Select a state</option>
-                                {states.map((state) => (
-                                    <option key={state.abbreviation} value={state.abbreviation}>{state.name}</option>
-                                ))}
-                            </select>
-                            <label>Zip Code:</label>
-                            <input
-                                type="text"
-                                placeholder="Zip Code"
-                                value={billingZipCode}
-                                onChange={(e) => setBillingZipCode(e.target.value)}
-                            />
-                        </>
-                        )}
-                    </div>
-                    <div>
-                        <h3>Credit Card Information</h3>
-                        <label>Card Number:</label>
-                        <input
-                            type="text"
-                            name="number"
-                            placeholder="Card Number"
-                            value={creditCardNumber}
-                            onChange={(e) => setCreditCardNumber(e.target.value)}
-                        />
-                        <label>Expiration Date:</label>
-                        <input
-                            type="text"
-                            name="expirationDate"
-                            placeholder="Expiration Date (MM/YY)"
-                            value={creditCardExpirationDate}
-                            onChange={(e) => setCreditCardExpirationDate(e.target.value)}
-                        />
-                        <label>CVV:</label>
-                        <input
-                            type="text"
-                            name="cvv"
-                            placeholder="CVV"
-                            value={creditCardCvv}
-                            onChange={(e) => setCreditCardCvv(e.target.value)}
-                        />
-                    </div>
-                    <button onClick={handleSubmit} style={{ marginTop: '20px' }}>Submit</button>
-                </form>
-            </div>
-        );
-    };
-    
-    export default Checkout;
+            <Elements stripe={stripePromise}>
+                <CheckoutForm />
+            </Elements>
+        </div>
+    );
+};
+
+export default Checkout;
