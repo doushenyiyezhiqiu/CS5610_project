@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import { fetchOrderHistory } from '../../services/OrderService';
+import './OrderHistory.css';
 
 const OrderHistory = () => {
     const [orders, setOrders] = useState([]);
@@ -8,7 +9,7 @@ const OrderHistory = () => {
 
     useEffect(() => {
         const getOrders = async () => {
-            if(user?.email) {
+            if (user?.email) {
                 const fetchedOrders = await fetchOrderHistory(user.email);
                 setOrders(fetchedOrders);
             }
@@ -17,23 +18,22 @@ const OrderHistory = () => {
         getOrders();
     }, [user?.email]);
 
-    // Check if orders array is empty and display a message accordingly
     if (orders.length === 0) {
         return (
-            <div>
-                <h2>Order History</h2>
-                <p>You never placed an order.</p>
+            <div className="order-history-container">
+                <h2 className="order-history-heading">Order History</h2>
+                <p>You have not placed any orders yet.</p>
             </div>
         );
     }
 
     return (
-        <div>
-            <h2>Order History</h2>
+        <div className="order-history-container">
+            <h2 className="order-history-heading">Order History</h2>
             {orders.map(order => (
-                <div key={order.id}>
-                    <h3>Order ID: {order.id}</h3>
-                    <table>
+                <div key={order.id} className="order-card">
+                    <h3 className="order-id">Order ID: {order.id}</h3>
+                    <table className="table">
                         <thead>
                             <tr>
                                 {/* Apply inline styles for column widths and text alignment */}
@@ -54,7 +54,7 @@ const OrderHistory = () => {
                             ))}
                         </tbody>
                     </table>
-                    <div style={{ textAlign: 'right', marginTop: '10px' }}>
+                    <div className="order-summary">
                         <p>Order Time: {new Date(order.orderDate).toLocaleString()}</p>
                         <p>Total Amount: ${order.totalAmount}</p>
                     </div>
