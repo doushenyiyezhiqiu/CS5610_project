@@ -37,6 +37,12 @@ const NavBar = () => {
         }
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
     return (
         <div className="navbar">
             <Link to="/">
@@ -49,6 +55,7 @@ const NavBar = () => {
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={handleKeyDown}
                 />
                 <button onClick={handleSearch}>Search</button>
             </div>
