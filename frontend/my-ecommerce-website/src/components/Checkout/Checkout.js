@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import './Checkout.css';
 
 const stripePromise = loadStripe('pk_test_51Ngg0rEHLw8pQL0lnAgduz4hh1g2D8BRHyWSwKGL9HqIjTzMVAZmcTmpxO1EqhG9PNXVfE6eWIiQ0xmrdPj7Npvg00793gB1rQ');
 
@@ -14,7 +15,7 @@ const CARD_ELEMENT_OPTIONS = {
             color: "#32325d",
             fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
             fontSmoothing: "antialiased",
-            fontSize: "20px",
+            fontSize: "14px",
             "::placeholder": {
                 color: "#aab7c4"
             },
@@ -211,47 +212,55 @@ const CheckoutForm = () => {
 
 
         <form>
-            <div>
-                <label>First Name:</label>
-                <input
+            <div className="form-group">
+                <label className='label'>First Name:</label>
+                <input className='input'
                     type="text"
                     placeholder="First Name"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                 />
-                <label>Last Name:</label>
-                <input
+            </div>
+            <div className="form-group">
+                <label className='label'>Last Name:</label>
+                <input className='input'
                     type="text"
                     placeholder="Last Name"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                 />
-                <label>Email Address:</label>
-                <input
+            </div>
+            <div className="form-group">
+                <label className='label'>Email Address:</label>
+                <input className='input'
                     type="email"
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
-            <div>
-                <h3>Shipping Address</h3>
-                <label>Address:</label>
-                <input
+            <h3>Shipping Address</h3>
+            <div className="form-group">
+                <label className='label'>Address:</label>
+                <input className='input'
                     type="text"
                     placeholder="Address"
                     value={shippingAddress}
                     onChange={(e) => setShippingAddress(e.target.value)}
                 />
-                <label>City:</label>
-                <input
+            </div>
+            <div className="form-group">
+                <label className='label'>City:</label>
+                <input className='input'
                     type="text"
                     placeholder="City"
                     value={shippingCity}
                     onChange={(e) => setShippingCity(e.target.value)}
                 />
-                <label>State:</label>
-                <select
+            </div>
+            <div className="form-group">
+                <label className='label'>State:</label>
+                <select className='select'
                     value={shippingState}
                     onChange={(e) => setShippingState(e.target.value)}
                 >
@@ -260,15 +269,16 @@ const CheckoutForm = () => {
                         <option key={state.abbreviation} value={state.abbreviation}>{state.name}</option>
                     ))}
                 </select>
-                <label>Zip Code:</label>
-                <input
-                    type="text"
-                    placeholder="Zip Code"
-                    value={shippingZipCode}
-                    onChange={(e) => setShippingZipCode(e.target.value)}
-                />
             </div>
-            <div>
+            <label className='label'>Zip Code:</label>
+            <input className='input'
+                type="text"
+                placeholder="Zip Code"
+                value={shippingZipCode}
+                onChange={(e) => setShippingZipCode(e.target.value)}
+            />
+
+            <div className="form-group">
                 <h3>Billing Address</h3>
                 <label>
                     <input
@@ -279,45 +289,53 @@ const CheckoutForm = () => {
                 </label>
                 {!sameAsShipping && (
                     <>
-                        <label>Address:</label>
-                        <input
-                            type="text"
-                            placeholder="Address"
-                            value={billingAddress}
-                            onChange={(e) => setBillingAddress(e.target.value)}
-                        />
-                        <label>City:</label>
-                        <input
-                            type="text"
-                            placeholder="City"
-                            value={billingCity}
-                            onChange={(e) => setBillingCity(e.target.value)}
-                        />
-                        <label>State:</label>
-                        <select
-                            value={billingState}
-                            onChange={(e) => setBillingState(e.target.value)}
-                        >
-                            <option value="">Select a state</option>
-                            {states.map((state) => (
-                                <option key={state.abbreviation} value={state.abbreviation}>{state.name}</option>
-                            ))}
-                        </select>
-                        <label>Zip Code:</label>
-                        <input
-                            type="text"
-                            placeholder="Zip Code"
-                            value={billingZipCode}
-                            onChange={(e) => setBillingZipCode(e.target.value)}
-                        />
+                        <div className="form-group">
+                            <label className='label'>Address:</label>
+                            <input className='input'
+                                type="text"
+                                placeholder="Address"
+                                value={billingAddress}
+                                onChange={(e) => setBillingAddress(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className='label'>City:</label>
+                            <input className='input'
+                                type="text"
+                                placeholder="City"
+                                value={billingCity}
+                                onChange={(e) => setBillingCity(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className='label'>State:</label>
+                            <select className='select'
+                                value={billingState}
+                                onChange={(e) => setBillingState(e.target.value)}
+                            >
+                                <option value="">Select a state</option>
+                                {states.map((state) => (
+                                    <option key={state.abbreviation} value={state.abbreviation}>{state.name}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label className='label'>Zip Code:</label>
+                            <input className='input'
+                                type="text"
+                                placeholder="Zip Code"
+                                value={billingZipCode}
+                                onChange={(e) => setBillingZipCode(e.target.value)}
+                            />
+                        </div>
                     </>
                 )}
             </div>
-            <div>
-                <h3>Credit Card Information</h3>
-                <CardElement options={CARD_ELEMENT_OPTIONS} />
+            <div className="form-group">
+                <label className="label">Credit Card Information:</label>
+                <CardElement className="StripeElement" options={CARD_ELEMENT_OPTIONS} />
             </div>
-            <button onClick={handleSubmit} style={{ marginTop: '20px' }}>Submit</button>
+            <button onClick={handleSubmit} className='button'>Submit</button>
 
         </form>
 
@@ -327,7 +345,7 @@ const CheckoutForm = () => {
 
 const Checkout = () => {
     return (
-        <div>
+        <div className="checkout-container">
             <h2>Checkout</h2>
             <Elements stripe={stripePromise}>
                 <CheckoutForm />
