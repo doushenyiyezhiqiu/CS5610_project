@@ -32,7 +32,7 @@ const OrderHistory = () => {
             <h2 className="order-history-heading">Order History</h2>
             {orders.map(order => (
                 <div key={order.id} className="order-card">
-                    <h3 className="order-id">Order ID: {order.id}</h3>
+                    <h3 className="order-id">Order Time: {new Date(order.orderDate).toLocaleString()}</h3>
                     <table className="table">
                         <thead>
                             <tr>
@@ -55,7 +55,6 @@ const OrderHistory = () => {
                         </tbody>
                     </table>
                     <div className="order-summary">
-                        <p>Order Time: {new Date(order.orderDate).toLocaleString()}</p>
                         <p>Total Amount: ${order.totalAmount}</p>
                     </div>
                 </div>
