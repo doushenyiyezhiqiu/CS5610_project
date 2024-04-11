@@ -126,7 +126,7 @@ VALUES (
 
 INSERT INTO products (name, image_url, description, price)
 VALUES (
-    'Slattum',
+    'Slattum Bed',
     '/images/bed.png',
     'The SLATTUM upholstered bed frame, in Knisa light gray and twin size, is a stylish and practical addition to any bedroom, courtesy of IKEA. It features a soft, padded 
     headboard that provides comfortable support for reading or relaxing in bed, making it not just a piece of furniture but a cozy retreat. The clean, simple lines and the 
@@ -275,6 +275,132 @@ VALUES (
     of comfort, style, and efficiency.',
     295.00
 );
+
+INSERT INTO products (name, image_url, description, price)
+VALUES (
+    'KD15',
+    '/images/kd15.png',
+    'The KD15 basketball shoes, signature footwear of NBA superstar Kevin Durant, represent a blend of innovation, comfort, and style tailored for the dynamic playstyle 
+    of one of basketball\'s most versatile athletes. Engineered for performance, these shoes boast a responsive cushioning system designed to provide maximum energy 
+    return and support during explosive movements. The KD15 features a lightweight, breathable upper that ensures a snug and comfortable fit, adapting to the foot\'s 
+    natural movements. With a focus on stability and traction, the outsole is meticulously designed to offer superior grip on the court. The aesthetic appeal of the KD15, 
+    with its sleek design and array of colorways, reflects Durant\'s personal style and on-court prowess, making it a popular choice among players and sneaker enthusiasts 
+    alike.',
+    169.00
+);
+
+INSERT INTO products (name, image_url, description, price)
+VALUES (
+    'Yamaha F325D Acoustic Guitar',
+    '/images/guitar.png',
+    'The Yamaha F325D Acoustic Guitar in Natural finish is a testament to Yamaha\'s commitment to producing quality instruments that are both accessible and reliable 
+    for musicians of all levels. This model, known for its exceptional craftsmanship, offers a warm, vibrant sound that\'s characteristic of much more expensive guitars. 
+    The F325D features a spruce top, known for its clear, robust tone, coupled with a meranti back and sides that contribute to its rich sound projection. The natural 
+    finish enhances its classic design, showcasing the wood\'s inherent beauty. Its comfortable neck and smooth fretboard facilitate easy playability, making it an ideal 
+    choice for beginners and seasoned players alike. The Yamaha F325D stands out for its durability, sound quality, and affordability, embodying Yamaha\'s tradition of 
+    musical excellence.',
+    199.00
+);
+
+INSERT INTO products (name, image_url, description, price)
+VALUES (
+    'Marshall Stanmore II Speaker',
+    '/images/speaker.png',
+    'The Marshall Stanmore II Bluetooth Speaker in Brown is an embodiment of classic design fused with modern technology. It delivers a powerful audio experience, staying 
+    true to the Marshall legacy known for its premium sound quality. The speaker\'s brown color, combined with its iconic Marshall design, exudes a retro vibe that appeals 
+    to both vintage enthusiasts and contemporary audiences. Equipped with advanced Bluetooth 5.0 technology, it offers a seamless and reliable wireless connection, allowing 
+    you to stream music from your smartphone, tablet, or laptop effortlessly. The Stanmore II features customizable sound settings through the Marshall Bluetooth app or the 
+    analog controls on its top panel, enabling you to fine-tune the bass, treble, and volume to your preference. Despite its compact size, the speaker packs a punch with 
+    its clear, room-filling sound, making it perfect for any setting, from quiet personal listening to lively gatherings. The combination of its aesthetic appeal, cutting-edge 
+    features, and exceptional sound quality makes the Marshall Stanmore II a standout choice for music lovers seeking both style and performance.',
+    329.00
+);
+
+INSERT INTO products (name, image_url, description, price)
+VALUES (
+    'Compact Refrigerator',
+    '/images/fridge.png',
+    'The 3.5cu.ft Compact Refrigerator Mini Fridge with Freezer by Krib Bling is a versatile and efficient appliance designed for spaces where room is at a premium but 
+    functionality cannot be compromised. This small refrigerator features a two-door design, separating the cooling and freezing compartments for optimal temperature control 
+    and energy efficiency. The sleek exterior makes it an ideal match for dorm rooms, offices, or small apartments, adding a touch of elegance with its modern aesthetics. 
+    Inside, adjustable shelves and door bins offer flexible storage solutions for a variety of food and beverage items. The unit also includes a crisper drawer, keeping 
+    fruits and vegetables fresh longer. Despite its compact size, this refrigerator provides ample space, making it an excellent choice for those seeking convenience and 
+    reliability in a smaller footprint. Krib Bling\'s attention to detail ensures a quiet operation, making it a seamless addition to any living space.',
+    209.00
+);
+
+INSERT INTO products (name, image_url, description, price)
+VALUES (
+    'Macbook Air13',
+    '/images/macbook.png',
+    'The MacBook Air 13 is a hallmark of portable computing, epitomizing Apple\'s commitment to sleek design and powerful functionality. Renowned for its ultra-thin profile, 
+    this laptop combines aesthetic elegance with robust performance. It features a vibrant 13.3-inch Retina display that brings visuals to life with stunning clarity and 
+    color accuracy, ideal for both professional creatives and casual users. Powered by Apple\'s groundbreaking M1 or M2 chip, depending on the model, it delivers exceptional 
+    speed and efficiency, handling everything from everyday tasks to more demanding applications with ease. With up to 18 hours of battery life, the MacBook Air 13 ensures 
+    productivity is uninterrupted. Its silent, fanless design offers a quiet operating environment, while its built-in security features safeguard your data. Additionally, 
+    it supports Thunderbolt/USB 4 connectivity for fast data transfer and versatile peripheral connections, making it a favorite among students, professionals, and technology 
+    enthusiasts seeking a lightweight yet powerful laptop.',
+    1199.00
+);
+
+INSERT INTO products (name, image_url, description, price)
+VALUES (
+    'Lay\'s Classic Potato Chips',
+    '/images/chips.png',
+    'Lay\'s Classic Potato Chips, packaged in an 8-ounce bag, are the quintessence of snack perfection. Crafted from specially selected potatoes, these chips are thinly 
+    sliced and cooked to a crispy golden perfection, ensuring a satisfying crunch with every bite. Lay\'s has mastered the balance of simplicity and flavor, with just 
+    the right amount of salt to enhance the natural potato taste, making them an irresistible choice for snack lovers. The 8-ounce bag is ideal for sharing, whether it\'s for 
+    a family movie night, a casual gathering with friends, or a solo indulgence. Lay\'s Classic Potato Chips are a staple in pantries around the world, celebrated 
+    for their quality, consistency, and classic taste that has stood the test of time. These chips are not just a snack; they\'re a tradition of enjoyment in every bite.',
+    8.99
+);
+
+INSERT INTO products (name, image_url, description, price)
+VALUES (
+    'Softsoap Hand Soap',
+    '/images/handSoap.png',
+    'Softsoap Liquid Hand Soap with Aloe, in a convenient 7.5 fluid ounce bottle, is a gentle yet effective cleansing solution designed to nourish and soothe your skin. 
+    Infused with aloe vera, known for its moisturizing and healing properties, this hand soap ensures your hands are left feeling soft and hydrated after each wash, 
+    without the tightness or dryness associated with regular soaps. Its formula is carefully balanced to cleanse thoroughly while protecting the skin’s natural moisture barrier.
+    The light, refreshing scent provides a clean and invigorating experience, making handwashing a moment of care for yourself. Ideal for frequent use, Softsoap’s Aloe variant 
+    is a household favorite, promoting healthy hand hygiene with every pump. Its compact size is perfect for placement by sinks in bathrooms and kitchens, offering a blend of 
+    practicality and soothing care.',
+    1.24
+);
+
+INSERT INTO products (name, image_url, description, price)
+VALUES (
+    'NORDVIKEN Chair',
+    '/images/chair.png',
+    'The NORDVIKEN chair from IKEA, finished in an elegant antique stain, is a beautifully crafted piece of furniture that exudes timeless charm and sophistication. 
+    Designed to complement a wide range of dining room aesthetics, this chair features a classic silhouette with a high backrest that provides excellent support and 
+    comfort during meals. The antique stain on the solid wood construction not only enhances the chair\'s visual appeal but also showcases the natural beauty and 
+    grain of the wood, adding warmth and character to any dining space. The NORDVIKEN chair is built to last, ensuring durability and stability through years of use. 
+    Its thoughtful design includes a spacious seat and gently curved backrest, making it an inviting addition to any table setting. Whether used for daily meals or 
+    special occasions, the NORDVIKEN chair is a versatile and stylish choice that perfectly embodies IKEA\'s commitment to quality, design, and affordability.',
+    17.99
+);
+
+INSERT INTO products (name, image_url, description, price)
+VALUES (
+    'Ampere Dusk Sunglasses',
+    '/images/sunglasses.png',
+    'The Ampere Dusk Sunglasses represent a leap forward in wearable technology, merging the practicality of eye protection with the latest in smart audio capabilities. 
+    These app-enabled smart sunglasses come equipped with built-in speakers and a microphone, allowing for hands-free calls, music listening, and seamless interaction 
+    with voice assistants. They\'re designed for those on the go, offering a fast and intuitive user experience. The sunglasses\' lenses are adjustable, providing the 
+    wearer with the ability to change tint levels electronically via an app, making them suitable for various light conditions from dawn till dusk. Beyond their 
+    tech-savvy features, the Dusk Sunglasses boast a stylish design, ensuring that fashion and function go hand in hand. This innovative accessory is perfect for 
+    tech enthusiasts and fashion-forward individuals alike, offering a unique blend of smart connectivity, audio entertainment, and visual comfort.',
+    159.99
+);
+
+
+
+
+
+
+
+
 
 
 
