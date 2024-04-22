@@ -39,7 +39,6 @@ const App = () => {
           <Route path="/cart" element={<ProtectedRoute element={CartDetails} />} />
           <Route path="/checkout" element={<ProtectedRoute element={Checkout} />} />
           <Route path="/order-history" element={<ProtectedRoute element={OrderHistory} />} />
-          {/* Define other routes */}
         </Routes>
       </Router>
     </Auth0Provider>
