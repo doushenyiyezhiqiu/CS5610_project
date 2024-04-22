@@ -31,3 +31,14 @@ To access the full features of this website, customers must first log in by clic
 Once logged in, customers have full access to all product details and the complete navigation bar. They can search for products by typing in the search field at the center of the navigation bar and either pressing the 'enter' key or clicking the 'search' button. Products can be added to the cart, and the details can be viewed by clicking the 'cart' icon. On the cart details page, products can be added or removed. To proceed with the purchase, customers can click the 'checkout' button. During checkout, they will need to enter their first names, last names, emails, shipping and billing addresses, and select a payment method. It is important to use the same email address for order history tracking as used for logging in.
 
 6. Lessons learned
+
+I completed all the initial objectives set out for my project, but I did not meet the expected timeline for the course's prototype presentation. Instead of completing the first two versions as planned, I only managed to complete the initial version (v0.1).
+
+In selecting the appropriate technologies, I opted for ReactJS for the frontend and Flask for the backend, both of which were covered in the class and are straightforward to implement. I chose MySQL as the database because this project involves managing numerous objects with similar attributes, making a relational database suitable. Among relational databases, MySQL is my most familiar choice and can handle large amounts of data, unlike SQLite, which is more lightweight. For third-party authorization, I implemented Auth0 by Okta, which offers a user-friendly interface and an easy-to-use API. Additionally, I integrated Stripe for handling payments, a popular choice among developers.
+
+I believe I effectively scoped my project in both the 'proposal.md' and 'plan.md', including the addition of the Stripe API, which was not initially mentioned in the proposal.
+
+The most engaging aspect of my project lies in the integration of the two APIs, Auth0 and Stripe. Using Stripe's dashboard, I can monitor successful payments and process refunds if necessary. These APIs are not only simple to implement but also significantly enhance development efficiency.
+
+The biggest challenge I faced was time. With only three weeks to complete the full stack application on my own, it required careful planning and leveraging my prior experience. Thankfully, this experience enabled me to meet all project requirements successfully.
+
