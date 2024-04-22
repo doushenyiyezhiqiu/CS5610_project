@@ -42,3 +42,19 @@ The most engaging aspect of my project lies in the integration of the two APIs, 
 
 The biggest challenge I faced was time. With only three weeks to complete the full stack application on my own, it required careful planning and leveraging my prior experience. Thankfully, this experience enabled me to meet all project requirements successfully.
 
+I believe there are several areas in this project that could benefit from improvements. For instance, the images and descriptions are currently hard-coded into the local database, and the system only supports a customer role. These aspects could be enhanced in future updates.
+
+7, References
+
+I wrote all the code myself, starting with the default React template for the project structure.
+
+The product descriptions come from various sources; some are crafted by ChatGPT, while others, such as the description for the iPhone 15, are sourced from Wikipedia, available at:
+
+https://en.wikipedia.org/wiki/IPhone_15
+
+Many of the images used are from Google Images. Since this content isn't a primary focus, I've chosen not to detail these images. For understanding and implementing the APIs, I consulted the official documentation for Auth0 and Stripe, which can be accessed through the following links:
+
+https://auth0.com/docs/quickstarts
+
+https://docs.stripe.com/payments/online-payments
+
